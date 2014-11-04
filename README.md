@@ -237,10 +237,24 @@ Telling Heroku to add a domain is simply done with one command
 ➜ heroku domains:add <domain>
 ```
 
-For me, it was `heroku domains:add amielkollek.me`.
+For me, it was `heroku domains:add amielkollek.me` and `heroku domains:add www.amielkollek.me`, since I want both these to take me to my site.
 
 ##### 2: Namecheap
 
-Log into [Namecheap](https://www.namecheap.com/) then click domains. Click on your new domain. In the left bar, you will see 
+When a user types in a url, the address of the computer that is sending them information is a series of numbers and is meaningless to a human. So, we have the Domain Name System (or DNS) which acts as a "phone book" and let's me see Google by typing "www.google.com" rather than having to type in a Google server's IP address. What we are about to do is edit that phone book and tell it to direct our domain to our new site.
+
+Log into [Namecheap](https://www.namecheap.com/) then click domains. Click on your new domain. In the left bar, you will see an option under "Host Management", "URL Forwarding". Click this, and in the "@" and "www" sections, put you app's URL in the IP/URL field, then choose CNAME (Alias) in the drop down. You will also see a field on the right, "TTL". This stands for time to live. It is how long it will be between refreshes of this DNS entry. It will likely start out as half an hour for you, meaning you may have to wait for half an hour before you will be able to see your Heroku site at your domain. I am going to change it to 60 (the smallest allowed) so that in the future it will be faster. We'll still have to wait half an hour for this firs time though...
+
+![final namecheap configuration](http://s29.postimg.org/cuhoi47xz/Screen_Shot_2014_11_04_at_12_55_00_AM.png)
+
+-----
+And we're all set! Our website will be online and visible to everyone in the world!
+
+
+
+
+
+
+
 
 
