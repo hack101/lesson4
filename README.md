@@ -119,6 +119,12 @@ I've also commented out the `DEBUG = True` line, seeing as we won't be debugging
 
 ## Heroku
 
+To install Heroku, you can visit [this link](https://toolbelt.heroku.com/). This will require the use of an administrator password, so if you are on a Trottier computer you'll have to do it differently. I wrote a script you can use to install Heroku in your home directory if you are using a Trottier computer. Simply copy the following line into terminal:
+
+```sh
+curl -s "https://raw.githubusercontent.com/hack101/lesson4/master/heroku-setup.sh" | sh
+```
+
 We will be using Heroku to host our website (meaning that they'll let us put our app on one of their servers). This process is somewhat similar to when we used `git push` and sent all of our files to GitHub, except instead of just storing the files, Heroku will run our app and make it available to the internet at an IP address.
 
 To begin, we need to first sign up for [Heroku](https://www.heroku.com/) and then install the [Heroku command line tools](https://devcenter.heroku.com/articles/getting-started-with-python#set-up). Once we we have the command line tools, we will have to login from our computer. It may ask you to generate an ssh key if this is the first time you are logging in. Choose yes.
