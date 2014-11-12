@@ -18,7 +18,7 @@
 
     if [ ":$PATH:" != *":/usr/local/heroku/bin:"* ]; then
     echo "Add the Heroku CLI to your PATH using:"
-    echo "$ echo 'PATH=\"~/heroku/bin:\$PATH\"' >> ~/.profile"
+    echo "$ PATH=\"~/heroku/bin:\$PATH\""
     fi
 
     echo "Installation complete"
