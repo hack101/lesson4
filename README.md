@@ -251,8 +251,65 @@ Log into [Namecheap](https://www.namecheap.com/) then click domains. Click on yo
 And we're all set! Our website will be online and visible to everyone in the world!
 
 
+### Continuing development
 
 
+So we're online! Awesome! What if we want to change something on our site now though? Playing around and changing the site wasn't a problem before, since we were only working on our own computer. Now, however, we are editing the code of a live website. If we break the website and push to heroku, we should see our site go down!
+
+Of course, if we broke the site we wouldn't push until it was fixed, but lets say that you begin making some major changes to the site, and half way through you realize that there's a typo on your main page. You'd have to either finish your major changes before you could push to Heroku to fix the typo, or revert you code (using git) to an older working version, fix the typo, push to Heroku, then continue working on your big change. This seems overly difficult, so let's not do that!
+
+Git has us covered in this situation with "branching". Branching lets you create a copy of your code, edit it, then switch back and forth between different copies. So far we have only been working on one branch (the "master" branch), and this is the branch that we are sending to Heroku.
+
+How would we use branching in the example above? Before we started making an changes, we would create a new branch called "big-change". We could work on this branch to our heart's content and not worry about breaking anything. When we noticed the typo, no problem! We could just switch to "master", fix the typo, push to Heroku, then switch back to "big-change" and keep working. Easy!
+
+Let's do an example of branching now. Currently my main page says:
+
+```
+Hello, my name is Amiel. I study math and physics at McGill university and I am going to make my own website!
+```
+
+This is no longer true though! I have made my own website! Let's fix it.
+
+I'll start by making a new branch
+
+```sh
+➜ git checkout -b fixing-header
+```
+
+The git command `checkout` is used to switch between branches, and the `-b` tells it I want to make a new one. Now that I'm on the "fixing-header" branch I can edit things without fear of breaking anything. Let's fix that line in `templates/index.html`. I'll change it to
+
+```
+Hello, my name is Amiel. I study math and physics at McGill university and I made my own website!
+```
+
+I run it locally and see that all is in order. Great.
+
+```sh
+➜ git add --all
+➜ git commit -m "updated header"
+```
+
+Now I can switch back to master to put it on Heroku.
+
+```sh
+➜ git checkout master
+```
+
+But wait, I made my changes in "fixing-header", so "master" hasn't changed. To take the changes made in "fixing-header", I merge the two branches.
+
+```sh
+➜ git merge fixing-header
+```
+
+This command is saying, take the changes made in "fixing-header" and merge them into my current branch (in this case "master"). Git will try and merge the two branches. Since "fixing header" is one commit ahead of "master", the merge is easy and git does it automatically. There are cases however where it is no so easy and git will ask you to manually fix conflicts (for example if I changed the same line in two branches to then tried to merge the branches, git would have to ask which line I wanted to keep).
+
+Another great use of branches is if multiple people are working on code. I can make a branch to write my code and not worry about interfering with the other programmer, as we can just merge our branches when we are both done. 
+
+OK, so our fix was applied to "master" and we can update the live site!
+
+```sh
+➜ git push heroku master
+```
 
 
 
