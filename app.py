@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request, url_for, render_template
 from firebase import firebase
+import sys
 
 # config
 # server will reload on source changes, and provide a debugger for errors
@@ -31,4 +32,5 @@ def submit_message():
   return redirect(url_for('messages'))
 
 if __name__ == "__main__":
-  app.run()
+  port = int(sys.argv[1])
+  app.run(host="0.0.0.0",port=port)
